@@ -1,21 +1,13 @@
 
-import importlib
-import pkgutil
-import modulos
 
-def cargar_todos_los_modulos(package):
-    package_dir = package.__path__
-    package_name = package.__name__
+import sys
+import os
 
-    for _, module_name, _ in pkgutil.iter_modules(package_dir):
-        full_module_name = f"{package_name}.{module_name}"
-        importlib.import_module(full_module_name)
+# Agrega la carpeta 'modulos' al sys.path
+sys.path.append(os.path.join(os.path.dirname(__file__), 'modulos'))
 
-cargar_todos_los_modulos(modulos)
+# Ahora importa el menú
+from modulos.menu import menu_principal
 
-
-
-
-
-modulos.menu_principal()
-
+if __name__ == "__main__":
+    menu_principal()

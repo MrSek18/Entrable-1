@@ -1,17 +1,32 @@
-from mostrar import buscar_Contacto
+from contactos import datos
+from contactos import  guardar_datos
 
-def editar_Contacto():
-    Contacto= buscar_Contacto()
-    if Contacto:
-        print("Editar datos del Contacto")
-        Contacto.nombres=input("Nombres   : ")
-        Contacto.apellidos=input("Apellidos : ")
-        print()
+def buscar_id():
+    id = input("Ingresa el id: ")
+    return id
 
-        print("1.Producción\n2.Administrativo\n3.Sistemas")
-        Contacto.area=int(input("Area [1,2,3] : "))
-        Contacto.sueldo=Contacto.calcular_sueldo_base(Contacto.area)
+
+def editar_contacto():
+    id_contacto= buscar_id()
+    
+    for Contacto in datos["contactos"]:
+        if Contacto["id_contacto"] == id_contacto:
+            print("Editar datos del Contacto")
+            Contacto["nom"]=input("Nombres   : ")
+            Contacto["ape"]=input("Apellidos : ")
+            Contacto["fn"]=input("Ingresa la fecha de cumpleaños en formato DD/MM/AA: ")
+            Contacto["num"]=input("Número telefónico : ")
+            Contacto["email"]=input("Email : ")
+            Contacto["ec"]=input("Estado civil : ")
+            Contacto["oa"]=input("Ocupacion actual : ")
+            guardar_datos(datos)
+            print()
+            print("---Datos actualizados---")
+            print(f'Nombres y apellidos: {Contacto["nom"]}, {Contacto["ape"]}')
+            print(f'Fecha de nacimiento: {Contacto["fn"]}')
+            print(f'Número telefónico: {Contacto["num"]}')
+            print(f'Email: {Contacto["email"]}')
+            print(f'Estado Civil: {Contacto["ec"]}')
+            print(f'Ocupación actual: {Contacto["oa"]}')
+
         
-        print("*** Dato Actualizados ***")
-        print("Apellidos y Nombres : " + Contacto.apellidos + " , " + Contacto.nombres)
-        print("Sueldo              : " + str(Contacto.sueldo))

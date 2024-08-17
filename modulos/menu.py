@@ -1,33 +1,36 @@
-def menu_principal():
-    while True:
-        os.system("cls")
-        print("Menu de Opciones")
-        print("1. Crear")
-        print("2. Buscar")
-        print("3. Editar")
-        print("4. Eliminar")
-        print("5. Listar")
-        print("6. Salida")
-        opcion= int(input("Selcciona ima opcion : "))
 
-        if opcion==1:
-            crear_Contacto()
-            time.sleep(2)
-        elif opcion==2:
-            buscar_Contacto()
-            time.sleep(2)
-        elif opcion==3:
-            editar_Contacto()
-            time.sleep(2)
-        elif opcion==4:
-            eliminar_Contacto()
-            time.sleep(2)
-        elif opcion==5:
-            listar_Contactos()
-            time.sleep(4)
-        elif opcion==6:
-            print("Salir del Programa")
-            break
+import os
+from agregar import crear_contacto
+from editar import editar_contacto
+from mostrar import buscar_contacto, mostrar_contactos
+from quitar import eliminar_contacto
+
+
+def menu_principal():
+        os.system("cls")  # Limpia la pantalla para mejorar la legibilidad del menú
+        print("Menu de Opciones")
+        print("1. Crear contacto")
+        print("2. Buscar contacto")
+        print("3. Editar contacto")
+        print("4. Eliminar contacto")
+        print("5. Mostrar contactos")
+        print("6. Salir")
+        opcion = int(input("Selecciona una opcion: "))
+
+        if opcion == 1:
+            crear_contacto()
+        elif opcion == 2:
+            buscar_contacto()
+        elif opcion == 3:
+            editar_contacto()
+        elif opcion == 4:
+            eliminar_contacto()
+        elif opcion == 5:
+            mostrar_contactos()
+        elif opcion == 6:
+            print("Saliendo del programa...")
         else:
-            print("Opcion no válida!! intente de nuevo [1,2,3,4,5,6]")
-            time.sleep(1)
+            print("Opción no válida! Intente de nuevo [1, 2, 3, 4, 5, 6]")
+
+if __name__ == "__main__":
+    menu_principal()

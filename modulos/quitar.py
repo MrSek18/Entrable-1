@@ -1,15 +1,17 @@
-from contactos import Lista_Contactos
+from contactos import datos, guardar_datos
 
-def eliminar_Contacto():
-    id_=input("Ingresa el ID del Contacto : ")
-    for emp in Lista_Contactos:
-        if emp.id_emp==id_:
+def eliminar_contacto():
+    id=input("Ingresa el ID del Contacto : ")
+    encontrado = False
+    for con in datos["contactos"]:
+        if con["id_contacto"] == id:
             print("Contacto Encontrado")
-            print("Apellidos y Nombres : " + emp.apellidos + " , " + emp.nombres)
-            print("Sueldo              : " + str(emp.sueldo))
-            Lista_Contactos.remove(emp)
-            
-            return                                                
-    
-    print("Contacto no Existe!!!")
-    return 
+            datos["contactos"].remove(con)
+            guardar_datos(datos)
+            print("Usuario eliminado exitosamente")
+            encontrado = True
+            break                                                
+        
+    if not encontrado:
+        print("El contacto no existe")
+        

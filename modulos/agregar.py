@@ -1,8 +1,9 @@
 from contactos import Contacto
-from contactos import Lista_Contactos
+from contactos import  datos
+from contactos import  guardar_datos
 
 
-def crear_Contacto():
+def crear_contacto():
     nom=input("Ingresa Nombres : ")
     ape=input("Ingresa Apellidos : ")
     fn=input("Ingresa la fecha de cumpleaños en formato DD/MM/AA: ")
@@ -12,11 +13,14 @@ def crear_Contacto():
     oa=input("Ingresa la ocupación actual : ")    
 
     nc=Contacto(nom, ape, fn, num, email, ec, oa)
-    Lista_Contactos.append(nc)
+    
+    datos["contactos"].append(nc.__dict__)
+    
+    guardar_datos(datos)
 
+        
     print("*"*35)
     print(f'El contacto {nc.nom} | {nc.ape} | {nc.fn} | {nc.num} | {nc.email} | {nc.ec} | {nc.oa} ')
     print(f'Este es su ID generado {nc.id_contacto} ')
 
 
-crear_Contacto()
